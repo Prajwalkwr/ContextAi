@@ -1,0 +1,30 @@
+{
+  "name": "@contextai/sdk",
+  "version": "0.2.0",
+  "description": "Client SDK for the ContextAI project-aware intelligence engine",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./widget": {
+      "types": "./dist/widget.d.ts",
+      "import": "./dist/widget.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": ["ai", "sdk", "contextai", "analytics"],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}

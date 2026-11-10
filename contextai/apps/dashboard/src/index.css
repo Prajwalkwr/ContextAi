@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { color-scheme: dark; }
+  body {
+    @apply bg-ink-950 text-zinc-200 font-sans antialiased;
+    background-image:
+      radial-gradient(60rem 40rem at 85% -10%, rgba(124, 58, 237, 0.13), transparent 60%),
+      radial-gradient(50rem 30rem at -10% 110%, rgba(14, 165, 233, 0.08), transparent 60%);
+    background-attachment: fixed;
+  }
+  ::selection { background: rgba(139, 92, 246, 0.35); }
+  * { scrollbar-width: thin; scrollbar-color: #27272a transparent; }
+}
+
+@layer components {
+  .card {
+    @apply relative rounded-2xl border border-white/[0.06] bg-white/[0.025] backdrop-blur-sm;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 20px 40px -24px rgba(0, 0, 0, 0.6);
+  }
+  .card-hover { @apply transition duration-300 hover:border-white/[0.12] hover:bg-white/[0.04] hover:-translate-y-0.5; }
+  .input {
+    @apply w-full rounded-xl border border-white/[0.08] bg-black/30 px-3.5 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-600 outline-none transition focus:border-violet-500/60 focus:ring-4 focus:ring-violet-500/10;
+  }
+  .label { @apply mb-1.5 block text-xs font-medium text-zinc-400; }
+  .eyebrow { @apply text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500; }
+  .gradient-text { @apply bg-gradient-to-r from-white via-violet-200 to-sky-300 bg-clip-text text-transparent; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+  .skeleton {
+    @apply rounded-lg;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+}
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+.dashboard-shell {
+  background: #000;
+  color-scheme: dark;
+}
+
+.dashboard-shell .bg-butter {
+  background-color: #fff2b4;
+}
+
+.dashboard-shell .bg-butter:hover {
+  background-color: #f6e8a4;
+}
+
+.dashboard-shell .card {
+  border-color: rgba(255, 255, 255, 0.09);
+  background: #080808;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.025) inset, 0 18px 36px -28px rgba(0, 0, 0, 0.95);
+}
+
+.dashboard-shell .card-hover:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: #0d0d0d;
+}
+
+.dashboard-shell .input {
+  border-color: #292929;
+  background: #050505;
+}
+
+.dashboard-shell .input::placeholder {
+  color: #777;
+}
+
+.dashboard-shell .label {
+  color: #b4b4b8;
+}
+
+.dashboard-shell button:focus-visible,
+.dashboard-shell a:focus-visible {
+  outline: 2px solid #fff2b4;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

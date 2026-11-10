@@ -1,0 +1,15 @@
+FROM node:20-bookworm-slim
+WORKDIR /app
+COPY package.json package-lock.json ./
+COPY apps/api/package.json apps/api/
+COPY apps/dashboard/package.json apps/dashboard/
+COPY packages/sdk/package.json packages/sdk/
+RUN npm ci --omit=dev -w @contextai/api --include-workspace-root=false
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+RUN npx playwright install --with-deps chromium && chmod -R a+rX /ms-playwright
+COPY apps/api apps/api
+ENV NODE_ENV=production DATA_DIR=/data PORT=4000
+WORKDIR /app/apps/api
+EXPOSE 4000
+USER node
+CMD ["node", "src/index.js"]

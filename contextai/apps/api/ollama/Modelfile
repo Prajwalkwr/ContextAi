@@ -1,0 +1,5 @@
+# Local model for the ContextAI agent: `ollama create contextai-llama -f apps/api/ollama/Modelfile`
+# The agent's instructions, project card and tool definitions need more than Ollama's default 4k context.
+FROM llama3.2
+PARAMETER num_ctx 8192
+PARAMETER temperature 0.2

@@ -1,0 +1,28 @@
+{
+  "name": "contextai",
+  "private": true,
+  "type": "module",
+  "version": "0.2.0",
+  "description": "ContextAI — a reusable, project-aware AI intelligence engine",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,dashboard -c magenta,cyan \"npm run dev -w @contextai/api\" \"npm run dev -w @contextai/dashboard\"",
+    "dev:api": "npm run dev -w @contextai/api",
+    "dev:dashboard": "npm run dev -w @contextai/dashboard",
+    "seed": "npm run seed -w @contextai/api",
+    "build": "npm run build -w @contextai/sdk && npm run build -w @contextai/dashboard",
+    "test": "node --test tests/"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "mongodb-memory-server": "^10.1.0",
+    "pg-mem": "^3.0.2",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

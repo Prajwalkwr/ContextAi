@@ -9,6 +9,7 @@ ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 RUN npx playwright install --with-deps chromium && chmod -R a+rX /ms-playwright
 COPY apps/api apps/api
 ENV NODE_ENV=production DATA_DIR=/data PORT=4000
+RUN mkdir -p /data && chown node:node /data
 WORKDIR /app/apps/api
 EXPOSE 4000
 USER node

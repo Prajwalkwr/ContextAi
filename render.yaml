@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: contextai-api
+    runtime: docker
+    plan: free
+    region: singapore
+    branch: main
+    dockerContext: ./contextai
+    dockerfilePath: ./contextai/infrastructure/docker/Dockerfile.api
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ENCRYPTION_KEY
+        generateValue: true
+      - key: DEFAULT_TIME_ZONE
+        value: Asia/Kathmandu
+      # Comma-separated dashboard origins; set to the Vercel URL after the dashboard is deployed
+      - key: CORS_ORIGINS
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
